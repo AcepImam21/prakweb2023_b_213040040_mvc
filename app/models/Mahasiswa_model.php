@@ -55,5 +55,24 @@ class Mahasiswa_model {
         $this->db->bind('id', $id);
         return $this->db->single();
     }
+
+    public function tambahDataMahasiswa($data)
+    {
+        // ?????????? kenapa di video gk error ketika ('', :nama, :nrp, :email, :jurusan)"; ajg emosi
+        $query = "INSERT INTO mahasiswa VALUES ('0', :nama, :nrp, :email, :jurusan)";
+
+        $this->db->query($query);
+        $this->db->bind('nama', $data['nama']);
+        $this->db->bind('nrp', $data['nrp']);
+        $this->db->bind('email', $data['email']);
+        $this->db->bind('jurusan', $data['jurusan']);
+        // $this->db->bind('id', $data['id']);
+
+
+        $this->db->execute();
+
+        return $this->db->rowCount();
+
+    }
     
 }
